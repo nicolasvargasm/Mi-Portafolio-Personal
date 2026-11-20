@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicolas Vargas · Desarrollador de software</title>
+<meta name="description" content="Portafolio de Nicolas Estiben Vargas Moreno: técnico en sistemas y estudiante de Análisis y Desarrollo de Software (SENA).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#0E1726; --panel:#16233A; --texto:#EAF0F7; --suave:#A6B4C8;
+  --cian:#5CE1E6; --ambar:#FFB547; --rosa:#FF7A9C; --linea:#2A3A57;
+  --display:"Bricolage Grotesque",Georgia,sans-serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+:root[data-tema="claro"]{
+  --fondo:#F4F7FB; --panel:#FFFFFF; --texto:#122033; --suave:#4A5B73;
+  --cian:#0A8F9A; --ambar:#B86E00; --rosa:#C2325F; --linea:#D3DCE9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--fondo);color:var(--texto);font:400 17px/1.65 var(--sans);overflow-x:hidden;transition:background-color .4s,color .4s;-webkit-text-size-adjust:100%}
+a{color:var(--cian)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:6px}
+img{display:block;max-width:100%}
+ul,ol{list-style:none}
+button{font:inherit;cursor:pointer;color:inherit}
+.lienzo{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* Barra */
+.barra{position:sticky;top:12px;z-index:10;margin:14px auto 0;width:fit-content;max-width:calc(100% - 24px);display:flex;align-items:center;gap:2px;padding:6px 6px 6px 18px;background:var(--panel);border:1px solid var(--linea);border-radius:999px;box-shadow:0 12px 30px -14px rgba(0,0,0,.45)}
+.barra strong{font-family:var(--display);font-weight:800;margin-right:10px}
+.barra a{color:var(--texto);text-decoration:none;font-weight:500;font-size:15px;padding:8px 12px;border-radius:999px;white-space:nowrap}
+.barra a:hover{background:var(--linea)}
+.barra a.activa{background:var(--cian);color:#06222A}
+.tema{width:40px;height:40px;border-radius:50%;border:1px solid var(--linea);background:transparent;font-size:17px;margin-left:4px}
+.tema:hover{background:var(--linea)}
+
+/* Portada */
+.portada{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding:70px 0 40px}
+.hola{color:var(--ambar);font-weight:700;margin-bottom:8px}
+.portada h1{font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,8vw,6rem);line-height:.95;letter-spacing:-.035em}
+.portada h1 span{display:block;color:var(--cian)}
+.rol{margin-top:22px;font-size:1.2rem;color:var(--suave);min-height:1.7em}
+.rol b{color:var(--texto);font-weight:700}
+.rol .cur{display:inline-block;width:3px;height:1.05em;margin-left:3px;background:var(--cian);vertical-align:-3px;animation:parp 1s steps(1) infinite}
+@keyframes parp{50%{opacity:0}}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--texto);background:transparent;color:var(--texto)}
+.btn:hover{background:var(--texto);color:var(--fondo)}
+.btn.lleno{background:var(--cian);border-color:var(--cian);color:#06222A}
+.btn.lleno:hover{background:var(--ambar);border-color:var(--ambar);color:#2B1A00}
+
+.derecha{display:grid;gap:22px;justify-items:center}
+.retrato{position:relative;width:min(300px,70vw);aspect-ratio:1}
+.retrato img{width:100%;height:100%;object-fit:cover;border-radius:46% 54% 42% 58% / 56% 44% 56% 44%;border:6px solid var(--cian);transform:rotate(-4deg);transition:transform .5s}
+.retrato:hover img{transform:rotate(3deg) scale(1.03)}
+.sello{position:absolute;right:-14px;bottom:10px;background:var(--ambar);color:#2B1A00;font-weight:700;font-size:14px;line-height:1.25;padding:10px 14px;border-radius:12px 3px 12px 3px;transform:rotate(5deg);box-shadow:5px 5px 0 var(--rosa)}
+.terminal{width:100%;max-width:340px;background:#0A1120;color:#cfe6ea;border:1px solid var(--linea);border-radius:12px;font:13.5px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:14px 16px}
+.terminal i{font-style:normal;color:var(--cian)}
+.terminal em{font-style:normal;color:var(--ambar)}
+
+/* Secciones */
+.seccion{padding:76px 0 10px}
+.titulo{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,5vw,3.4rem);line-height:1;letter-spacing:-.03em;margin-bottom:34px}
+
+/* Sobre mí */
+.sobre{display:grid;grid-template-columns:1fr 1.25fr;gap:44px;align-items:start}
+.sobre .lado{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.2vw,2.3rem);line-height:1.12;letter-spacing:-.02em}
+.sobre .lado span{color:var(--rosa)}
+.globo{background:var(--panel);border:1px solid var(--linea);padding:30px 32px;border-radius:34px 34px 34px 6px}
+.globo p+p{margin-top:14px}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.tres article{background:var(--panel);border:1px solid var(--linea);padding:24px;border-radius:22px 22px 22px 5px;transition:transform .3s}
+.tres article:hover{transform:translateY(-5px)}
+.tres article:nth-child(2){border-radius:5px 22px 22px 22px;border-top:4px solid var(--ambar)}
+.tres article:nth-child(1){border-top:4px solid var(--cian)}
+.tres article:nth-child(3){border-top:4px solid var(--rosa)}
+.tres h3{font-family:var(--display);font-weight:800;font-size:1.25rem;margin-bottom:8px}
+.tres p{color:var(--suave);font-size:15.5px}
+
+/* Habilidades */
+.nube{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:center}
+.nube button{background:var(--panel);border:2px solid var(--linea);border-radius:999px;padding:10px 20px;font-weight:700;transition:transform .2s,background-color .2s,color .2s,border-color .2s}
+.nube button:hover{transform:translateY(-3px) rotate(-2deg);border-color:var(--cian)}
+.nube button[aria-pressed="true"]{background:var(--cian);border-color:var(--cian);color:#06222A}
+.nube .g{font-family:var(--display);font-size:1.9rem;padding:8px 26px}
+.nube .m{font-size:1.2rem}
+.nube .c{background:transparent;border-style:dashed;border-color:var(--ambar);color:var(--ambar)}
+.explica{margin-top:26px;max-width:58ch;min-height:72px;background:var(--panel);border-left:4px solid var(--ambar);border-radius:0 16px 16px 0;padding:16px 22px}
+.nota-nivel{margin-top:14px;font-size:14px;color:var(--suave)}
+
+/* Proyectos */
+.proyectos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.caso{background:var(--panel);border:1px solid var(--linea);padding:28px;border-radius:26px 56px 26px 56px;display:flex;flex-direction:column;gap:12px;transition:transform .3s,border-color .3s}
+.caso:hover{transform:translateY(-4px)}
+.caso:nth-child(1){border-color:var(--cian)}
+.caso:nth-child(2){border-color:var(--ambar)}
+.caso:nth-child(3){border-color:var(--rosa)}
+.caso h3{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.1}
+.caso p{color:var(--suave)}
+.etq{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.etq li{font-size:13px;font-weight:700;padding:4px 11px;border-radius:999px;background:var(--fondo)}
+.fila{display:flex;flex-wrap:wrap;gap:10px}
+.mini{font-weight:700;font-size:15px;padding:8px 16px;border-radius:999px;border:2px solid var(--texto);background:transparent;text-decoration:none;color:var(--texto)}
+.mini:hover{background:var(--texto);color:var(--fondo)}
+.detalle{display:none;background:var(--fondo);border-radius:14px;padding:14px 16px;font-size:15px}
+.caso.abierto .detalle{display:block;animation:baja .3s}
+@keyframes baja{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* Formación */
+.tiempo{position:relative;padding-left:32px;display:grid;gap:26px}
+.tiempo::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:3px;border-radius:3px;background:linear-gradient(var(--cian),var(--ambar),var(--rosa))}
+.tiempo li{position:relative;transition:transform .3s}
+.tiempo li:hover{transform:translateX(8px)}
+.tiempo li::before{content:"";position:absolute;left:-32px;top:7px;width:17px;height:17px;border-radius:50%;background:var(--fondo);border:3px solid var(--cian)}
+.tiempo li:nth-child(2)::before{border-color:var(--ambar)}
+.tiempo li:nth-child(3)::before{border-color:var(--rosa)}
+.tiempo h3{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1.15}
+.tiempo p{color:var(--suave)}
+.tiempo .año{color:var(--texto);font-weight:700;font-size:15px}
+
+/* Datos sueltos */
+.sueltos{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.sueltos article{background:var(--panel);border:1px solid var(--linea);border-radius:24px;padding:26px 28px}
+.sueltos h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:12px}
+.sueltos li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--linea)}
+.sueltos li:last-child{border:0}
+.sueltos li span{color:var(--suave)}
+.barra-ing{height:8px;border-radius:4px;background:var(--linea);margin-top:10px;overflow:hidden}
+.barra-ing i{display:block;height:100%;width:40%;background:var(--ambar)}
+
+/* Contacto */
+.contacto{margin:70px 0 50px;padding:60px 52px;border-radius:56px 20px 56px 20px;background:linear-gradient(120deg,var(--cian),var(--ambar));color:#0B1A26}
+.contacto h2{font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,8vw,5.5rem);line-height:.92;letter-spacing:-.04em}
+.contacto p{margin-top:18px;max-width:46ch;font-size:1.1rem}
+.contacto .acciones a,.contacto .acciones button{border-color:#0B1A26;color:#0B1A26}
+.contacto .acciones a:hover,.contacto .acciones button:hover{background:#0B1A26;color:var(--ambar)}
+.contacto .acciones .lleno{background:#0B1A26;color:var(--cian)}
+footer{text-align:center;color:var(--suave);font-size:14px;padding:0 0 36px}
+
+@media (max-width:860px){
+  .portada,.sobre{grid-template-columns:1fr;gap:28px}
+  .portada{padding-top:44px}
+  .derecha{justify-items:start}
+  .tres,.sueltos{grid-template-columns:1fr}
+  .barra{max-width:calc(100% - 16px);overflow-x:auto;padding-left:12px}
+  .barra strong{display:none}
+  .contacto{padding:40px 24px;border-radius:36px 14px 36px 14px}
+  .seccion{padding-top:56px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="lienzo">
+
+<nav class="barra" aria-label="Secciones">
+  <strong>Nicolas</strong>
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#habilidades">Habilidades</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#formacion">Formación</a>
+  <a href="#contacto">Contacto</a>
+  <button class="tema" id="tema" type="button" aria-label="Cambiar entre tema claro y oscuro">☾</button>
+</nav>
+
+<header class="portada">
+  <div>
+    <p class="hola">Hola, soy</p>
+    <h1>Nicolas<span>Vargas Moreno</span></h1>
+    <p class="rol"><b id="rol">Desarrollador de software</b><span class="cur" id="cur"></span></p>
+    <p class="rol" style="min-height:0;margin-top:8px;max-width:46ch">Empecé arreglando computadores y hoy aprendo a programar lo que corre en ellos. Me gusta entender cómo funcionan las cosas, por dentro y por fuera.</p>
+    <div class="acciones">
+      <a class="btn lleno" href="#proyectos">Ver mis proyectos</a>
+      <a class="btn" href="hoja-de-vida.pdf" download>Descargar hoja de vida</a>
+    </div>
+  </div>
+  <div class="derecha">
+    <div class="retrato">
+      <img src="img/nicolas.jpg" alt="Foto de Nicolas Vargas" width="300" height="300">
+      <div class="sello">Estudiando ADSO<br>en el SENA</div>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div><i>$</i> quien_soy</div>
+      <div>técnico en sistemas, <em>2025</em></div>
+      <div><i>$</i> que_estudio</div>
+      <div>análisis y desarrollo de software</div>
+      <div><i>$</i> que_busco</div>
+      <div>mi primera oportunidad<span class="cur" style="height:.9em;width:7px;vertical-align:-2px"></span></div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre-mi" class="seccion" aria-labelledby="t-sobre">
+  <h2 class="titulo" id="t-sobre">Sobre mí</h2>
+  <div class="sobre">
+    <p class="lado">Del soporte técnico al <span>código</span>: primero arreglaba el equipo, ahora quiero construir lo que corre en él.</p>
+    <div class="globo">
+      <p>Soy técnico en sistemas del SENA, con experiencia en soporte tecnológico, mantenimiento de equipos y redes básicas. Ese trabajo me enseñó a escuchar bien el problema antes de tocar nada.</p>
+      <p>Ahora estudio el Tecnólogo en Análisis y Desarrollo de Software. Me enfoco en programación, análisis de requerimientos y en armar soluciones que alguien de verdad pueda usar.</p>
+    </div>
+  </div>
+  <div class="tres">
+    <article><h3>Cómo trabajo</h3><p>Soy responsable y comprometido. Prefiero entender bien lo que se necesita antes de empezar y trabajar en equipo para llegar más lejos.</p></article>
+    <article><h3>Lo que me mueve</h3><p>Aprender rápido, mejorar un poco cada día y que lo que hago sirva para algo.</p></article>
+    <article><h3>Lo que viene</h3><p>Seguir fortaleciendo mis bases en programación y bases de datos, y mejorar mi inglés.</p></article>
+  </div>
+</section>
+
+<section id="habilidades" class="seccion" aria-labelledby="t-hab">
+  <h2 class="titulo" id="t-hab">Habilidades</h2>
+  <div class="nube">
+    <button class="g" type="button" data-uso="Java: es uno de los lenguajes principales de mi formación en el SENA. Lo uso para aprender programación orientada a objetos.">Java</button>
+    <button class="g" type="button" data-uso="Python: lo uso para practicar lógica y resolver problemas con código más corto y legible.">Python</button>
+    <button class="g" type="button" data-uso="JavaScript: es lo que le da vida a las páginas web. Con él hago que lo que construyo responda a quien lo usa.">JavaScript</button>
+    <button class="m" type="button" data-uso="HTML: es el esqueleto de cada página web que construyo.">HTML</button>
+    <button class="m" type="button" data-uso="CSS: con él le doy forma, color y orden a las páginas, incluido este portafolio.">CSS</button>
+    <button class="m" type="button" data-uso="SQL: lo uso para consultar y organizar datos en bases de datos.">SQL</button>
+    <button class="c" type="button" data-uso="Mantenimiento preventivo: limpieza, revisión y cuidado de equipos de cómputo para evitar fallas antes de que pasen.">Mantenimiento de equipos</button>
+    <button class="c" type="button" data-uso="Redes: gestión básica de redes, lo que aprendí en mi formación como técnico en sistemas.">Redes básicas</button>
+    <button class="c" type="button" data-uso="Soporte tecnológico: atender al usuario, entender qué le pasa y ayudarle a resolverlo.">Soporte técnico</button>
+  </div>
+  <p class="explica" id="explica" aria-live="polite">Toca una habilidad para ver para qué la uso.</p>
+  <p class="nota-nivel">Los de borde punteado vienen de mi formación como técnico.</p>
+</section>
+
+<section id="proyectos" class="seccion" aria-labelledby="t-proy">
+  <h2 class="titulo" id="t-proy">Proyectos</h2>
+  <ul class="proyectos">
+    <!-- Para enlazar cada proyecto directo a su repositorio, cambia el href por la URL del repo, por ejemplo https://github.com/nicolasvargasm/NOMBRE-DEL-REPO -->
+    <li class="caso">
+      <h3>ZYRA</h3>
+      <p>Uno de los proyectos que tengo publicados en mi GitHub.</p>
+      <div class="fila"><a class="mini" href="https://github.com/nicolasvargasm">Ver código</a></div>
+    </li>
+    <li class="caso">
+      <h3>Inventario Aula</h3>
+      <p>Proyecto de inventario que tengo publicado en mi GitHub.</p>
+      <div class="fila"><a class="mini" href="https://github.com/nicolasvargasm">Ver código</a></div>
+    </li>
+    <li class="caso">
+      <h3>Bootstrap</h3>
+      <p>Página web armada con Bootstrap, publicada en mi GitHub.</p>
+      <ul class="etq"><li>Bootstrap</li><li>HTML</li><li>CSS</li></ul>
+      <div class="fila"><a class="mini" href="https://github.com/nicolasvargasm">Ver código</a></div>
+    </li>
+  </ul>
+</section>
+
+<section id="formacion" class="seccion" aria-labelledby="t-form">
+  <h2 class="titulo" id="t-form">Formación</h2>
+  <ol class="tiempo">
+    <li><p class="año">2026 · En curso</p><h3>Tecnólogo en Análisis y Desarrollo de Software</h3><p>Servicio Nacional de Aprendizaje (SENA)</p></li>
+    <li><p class="año">2025</p><h3>Técnico en Sistemas</h3><p>Servicio Nacional de Aprendizaje (SENA)</p></li>
+    <li><p class="año">2025</p><h3>Bachillerato</h3><p>Colegio Manuel Cepeda Vargas</p></li>
+  </ol>
+</section>
+
+<section class="seccion" aria-label="Idiomas y ofimática">
+  <div class="sueltos">
+    <article>
+      <h3>Idiomas</h3>
+      <ul>
+        <li>Español <span>Nativo</span></li>
+        <li>Inglés <span>A1 · básico</span></li>
+      </ul>
+      <div class="barra-ing" role="img" aria-label="Inglés al 40 por ciento"><i></i></div>
+      <p style="margin-top:10px;font-size:14px"><a href="https://cert.efset.org/es/3NbK8e">Ver mi certificado EF SET</a></p>
+    </article>
+    <article>
+      <h3>Ofimática</h3>
+      <ul>
+        <li>Microsoft Word <span>Básico</span></li>
+        <li>Microsoft Excel <span>Básico</span></li>
+        <li>Microsoft PowerPoint <span>Básico</span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="contacto" class="contacto" aria-labelledby="t-cont">
+  <h2 id="t-cont">Hablemos</h2>
+  <p>Si tienes una vacante, una práctica o un proyecto donde pueda aportar, escríbeme. Respondo por correo o por WhatsApp.</p>
+  <div class="acciones">
+    <a class="btn lleno" href="mailto:nv3742665@gmail.com">Enviar correo</a>
+    <a class="btn" href="https://wa.me/573204491173">WhatsApp</a>
+    <button class="btn" id="copiar" type="button" data-correo="nv3742665@gmail.com">Copiar correo</button>
+    <a class="btn" href="https://github.com/nicolasvargasm">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/nicolas-vargas-b616823ab">LinkedIn</a>
+  </div>
+</section>
+
+<footer>Nicolas Estiben Vargas Moreno · Bogotá, Colombia</footer>
+</div>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Escritura del rol, una sola vez
+  var rol=document.getElementById('rol'),t=rol.textContent;
+  if(!reduce){
+    rol.textContent='';var i=0;
+    var w=setInterval(function(){rol.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(w);document.getElementById('cur').style.display='none'}},50);
+  }else document.getElementById('cur').style.display='none';
+
+  // Tema claro / oscuro
+  var tema=document.getElementById('tema');
+  tema.addEventListener('click',function(){
+    var h=document.documentElement,c=h.getAttribute('data-tema')==='claro';
+    h.setAttribute('data-tema',c?'oscuro':'claro');tema.textContent=c?'☾':'☀';
+  });
+
+  // Habilidades: explicación al tocar
+  var ex=document.getElementById('explica'),bs=document.querySelectorAll('.nube button');
+  bs.forEach(function(b){
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){
+      bs.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');ex.textContent=b.getAttribute('data-uso');
+    });
+  });
+
+  // Detalle de proyectos
+  document.querySelectorAll('.caso button[aria-expanded]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var a=b.closest('.caso').classList.toggle('abierto');
+      b.setAttribute('aria-expanded',a?'true':'false');b.textContent=a?'Cerrar detalle':'Ver detalle';
+    });
+  });
+
+  // Copiar correo
+  var cp=document.getElementById('copiar');
+  cp.addEventListener('click',function(){
+    var c=cp.getAttribute('data-correo');
+    var ok=function(x){cp.textContent=x;setTimeout(function(){cp.textContent='Copiar correo'},2000)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c).then(function(){ok('Correo copiado')},function(){ok(c)})}else ok(c);
+  });
+
+  // Sección activa en la barra
+  var ls=document.querySelectorAll('.barra a');
+  if('IntersectionObserver' in window){
+    var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)ls.forEach(function(a){a.classList.toggle('activa',a.getAttribute('href')==='#'+e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section[id]').forEach(function(s){o.observe(s)});
+  }
+})();
+</script>
+</body>
+</html>
